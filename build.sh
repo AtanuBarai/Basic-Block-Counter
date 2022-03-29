@@ -5,7 +5,7 @@ cd build
 cmake ..
 make
 cd ..
-clang -c bb-counter-rt.c
+clang -c bb-counter-rt.c*
 if [ "$#" -lt 1 ]; then
     echo "You must pass target program file name: ./build.sh filename"
 else

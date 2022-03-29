@@ -22,7 +22,7 @@ bool BBCounterPass::runOnFunction(Function &Func) {
   // Get the function to call from our runtime library.
   bool modified = false;
   LLVMContext &Ctx = Func.getContext();
-  std::vector<Type *> paramTypes = {Type::getInt8PtrTy(Ctx)};
+  ArrayRef<Type *> paramTypes = {Type::getInt8PtrTy(Ctx)};
   Type *retType = Type::getVoidTy(Ctx);
   FunctionType *bbCountFuncType = FunctionType::get(retType, paramTypes, false);
   Module *Mod = Func.getParent();
@@ -34,8 +34,7 @@ bool BBCounterPass::runOnFunction(Function &Func) {
     errs() << "BB: " << bb_id << "\tN. of Inst: " << BB.size() << "\n";
 
     IRBuilder<> builder(&BB);
-    builder.SetInsertPoint(BB.getTerminator());
-
+    builder.SetInsertPoint(BB.getFirstNonPHI()); // Insert before first non-PHI
 
     Value *args = builder.CreateGlobalStringPtr(bb_id.c_str());
     // Value *args[] = {builder.getInt32(100), strVal};
