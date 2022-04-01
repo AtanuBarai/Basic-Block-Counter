@@ -6,4 +6,4 @@ Build:
     $ cd Basic-Block-Counter
     $ ./build.sh simple.c
 Run:
-    $ ./run.sh
+    $ ./bb_count_instrumented.out
