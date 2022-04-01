@@ -27,7 +27,12 @@ int multiplier(int limit)
 
 int main(int argc, const char** argv)
 {
+    unsigned sum = 0;
     printf("Adder result: %d\n", adder(10));
     printf("Multiplier result: %d\n", multiplier(10));
+    for(int i = 0; i < 5; i++)
+    {
+        sum += i;
+    }
     return 0;
 }
